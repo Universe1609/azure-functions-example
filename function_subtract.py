@@ -3,8 +3,7 @@ import logging
 import azure.functions as func
 
 bp = func.Blueprint()
-
-@app.route(route="http_subtract")
+@bp.route(route="http_subtract")
 def subtract(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing subtraction request.')
     
