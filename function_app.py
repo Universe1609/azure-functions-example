@@ -1,15 +1,10 @@
 import azure.functions as func
-from fastapi.responses import JSONResponse
-from fastapi import FastAPI, status
 
-fastapi_app = FastAPI()
-app = func.AsgiFunctionApp(app=fastapi_app, http_auth_level=func.AuthLevel.ANONYMOUS)
+from fastapi import FastAPI
+from blueprints.fast_blueprints import bp as http_endpoints
 
-@fastapi_app.get("/root_index")
-async def root_index():
-    data = {'message': 'azure function is running'}
-    return JSONResponse(status_code=status.HTTP_200_OK, content=data)
+app = FastAPI(title="Azure functions fastapi example", description="Fastapi project for azure functions", version="0.1.0")
 
-@fastapi_app.get("/health")
-async def health_check():
-    return JSONResponse(status_code=status.HTTP_200_OK, content={"status": "ok"})
+app.include_router(http_endpoints)
+
+azure_app = func.AsgiFunctionApp(app=app, http_auth_level=func.AuthLevel.ANONYMOUS)
