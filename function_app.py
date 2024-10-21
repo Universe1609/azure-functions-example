@@ -1,5 +1,4 @@
 import azure.functions as func
-import logging
 
 from fastapi_project.main import app as fastapi_app
 
