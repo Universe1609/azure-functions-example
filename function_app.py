@@ -8,3 +8,5 @@ app = FastAPI(title="Azure functions fastapi example", description="Fastapi proj
 app.include_router(http_endpoints)
 
 azure_app = func.AsgiFunctionApp(app=app, http_auth_level=func.AuthLevel.ANONYMOUS)
+
+app.register_functions(http_endpoints)
