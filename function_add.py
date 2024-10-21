@@ -2,10 +2,10 @@ import logging
 
 import azure.functions as func
 
-add = func.Blueprint()
+bp = func.Blueprint()
 
-@add.route(route="http_add")
-def main(req: func.HttpRequest) -> func.HttpResponse:
+@bp.route(route="http_add")
+def add(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing addition request.')
     
     try:

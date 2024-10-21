@@ -2,10 +2,10 @@ import logging
 
 import azure.functions as func
 
-multiply = func.Blueprint()
+bp = func.Blueprint()
 
-@multiply.route(route="http_multiply")
-def main(req: func.HttpRequest) -> func.HttpResponse:
+@bp.route(route="http_multiply")
+def multiply(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing multiplication request.')
     
     try:
