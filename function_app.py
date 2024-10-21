@@ -1,5 +1,11 @@
-import azure.functions as func
+import azure.functions as func 
+from fastapi import FastAPI, Request, Response 
 
-from WrapperFunction import app as fastapi_app
+fast_app = FastAPI() 
 
-app = func.AsgiFunctionApp(app=fastapi_app, http_auth_level=func.AuthLevel.ANONYMOUS)
+@fast_app.get("/return_http_no_body") 
+async def return_http_no_body(): 
+    return Response(content='', media_type="text/plain") 
+
+app = func.AsgiFunctionApp(app=fast_app, 
+                           http_auth_level=func.AuthLevel.ANONYMOUS)
